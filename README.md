@@ -5,7 +5,7 @@ Welcome to my repository! This repository serves as a portfolio of the data scie
 ## Repository Structure
 Each task is organized into its own dedicated folder containing the source code, datasets, and documentation.
 
-* **[📁 Task1_Titanic_Prediction](./Task1_Titanic_Prediction):** A machine learning model that predicts passenger survival with 82% accuracy using a Random Forest Classifier.
+* **[ Task1_Titanic_Prediction](./Task1_Titanic_Prediction):** A machine learning model that predicts passenger survival with 82% accuracy using a Random Forest Classifier.
 * *(Upcoming tasks will be added here)*
 
 ## Tech Stack & Tools Used
