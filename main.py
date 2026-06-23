@@ -1,79 +1,26 @@
-import streamlit as st
-import joblib
 import os
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
 
-# Load model
+# Get the directory where this script (main.py) is located
 current_dir = os.path.dirname(os.path.abspath(__file__))
-model = joblib.load(os.path.join(current_dir, 'movie_model.pkl'))
+file_path = os.path.join(current_dir, 'IRIS.csv')
 
-st.set_page_config(page_title="Movie Insight Pro", layout="centered")
+# Step 1: Read the data using the absolute path
+df = pd.read_csv(file_path)
 
-st.markdown(
-    """
-    <style>
-        .stApp {
-            background: linear-gradient(180deg, #fff1f4 0%, #ffd5dd 100%);
-            color: #58111a;
-        }
+# ... (rest of your code stays exactly the same)
+"""
+Project: Iris Flower Classification
+Goal: Build a machine learning model to categorize iris species.
+Author: [Your Name]
+Method: Decision Tree Classifier
+"""
+import matplotlib.pyplot as plt
 
-        .stButton button {
-            background-color: #ff4d6d;
-            color: #fff;
-            border-radius: 12px;
-            border: none;
-            padding: 0.85rem 1.4rem;
-            font-weight: 700;
-        }
-
-        .stButton button:hover {
-            background-color: #ff1a36;
-            color: #fff;
-        }
-
-        .stTextInput>div>div>input,
-        .stNumberInput>div>div>input,
-        .stSelectbox>div>div>div>div,
-        .stSlider>div>div>div>div > div {
-            background: rgba(255, 255, 255, 0.96);
-            border: 1px solid rgba(255, 77, 109, 0.2);
-            color: #58111a;
-        }
-
-        .stTextInput>div>label,
-        .stNumberInput>div>label,
-        .stSelectbox>div>label,
-        .stSlider>div>label {
-            color: #58111a;
-            font-weight: 700;
-        }
-
-        .stMarkdown h1,
-        .stMarkdown h2,
-        .stMarkdown h3 {
-            color: #58111a;
-            text-align: center;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-st.title("Movie Success Predictor")
-
-# Inputs
-movie_name = st.text_input("Enter Movie Title:")
-year = st.number_input("Release Year", 1900, 2030, 2024)
-duration = st.slider("Duration (minutes)", 60, 200, 120)
-genre = st.selectbox("Genre", ["Action", "Drama", "Comedy", "Thriller", "Horror"])
-
-if st.button("Generate Forecast"):
-    if movie_name:
-        # Prediction
-        prediction = model.predict([[year, duration, 0, 100, 0, 0]])
-
-        st.divider()
-        st.subheader(f"Analysis for: {movie_name.upper()}")
-        st.success(f"Estimated Rating: {prediction[0]:.1f} / 10")
-        st.balloons()
-    else:
-        st.warning("Please enter a movie title to get a forecast.")
+# Simple check of data distribution
+df['species'].value_counts().plot(kind='bar')
+plt.title('Distribution of Iris Species')
+plt.show()
